@@ -225,9 +225,13 @@ public class ArrayHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
     @Override
     /**
-     * returns the max value in the heap (the first element in the arraylist)
+     * @return the root value of the heap (the first element in the arraylist)
+     * or returns null if the heap is empty
      */
     public E max() {
+        if (isEmpty()){
+            return null;
+        }
         return heap.get(0);
     }
 
@@ -235,8 +239,13 @@ public class ArrayHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     /**
      * replaces and returns the max value in the heap and calls the bubblesDown
      * function to reheapify the arraylist
+     * @return the first element or null if the heap is empty
      */
     public E removeMax() {
+        if (isEmpty()){
+            System.out.println("The heap is empty");
+            return null;
+        }
         E output = max();
         heap.set(0, heap.get(size - 1));
         heap.remove(size - 1);
@@ -248,6 +257,7 @@ public class ArrayHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     @Override
     /**
      * getter for the size of the heap
+     * @return the size
      */
     public int size() {
         return size;
@@ -256,6 +266,7 @@ public class ArrayHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     @Override
     /**
      * checks if the heap is empty
+     * @return boolean
      */
     public boolean isEmpty() {
         if (size == 0){
@@ -303,7 +314,7 @@ public class ArrayHeap<E extends Comparable<E>> implements PriorityQueue<E> {
             } powerCount1++;
 
         //returns the stringbuilder as a string
-        } return output.toString();
+        } return output.toString().trim();
     }
 
     /**

@@ -50,15 +50,17 @@ public class Main {
             System.out.println(candidateHeap.removeMax());
         }
 
-
+        //test for the arrayheap
         heapTest();
-    	// TODO: first create tests for your ArrayHeap class (in a separate method below).
-
-        // TODO: then read in the polling data from the given file (just one) and create
-		// a heap of candidates to be sorted by their polling numbers
     }
 
+    /**
+     * tests the arrayheap
+     */
     public static void heapTest(){
+
+        System.out.println("\n\n\n -------Tests-------");
+        //tests arrayheap with integers
         ArrayHeap<Integer> test = new ArrayHeap<>();
         test.insert(-2);
         test.insert(3);
@@ -68,34 +70,71 @@ public class Main {
         test.insert(2);
         test.insert(6);
         test.insert(-3);
-        //test.insert(1);
-        System.out.println(test);
 
+        System.out.println(test);
+        if (test.toString().compareTo("9\n1 6\n-3 -2 2 3\n-7") == 0){
+            System.out.println("Output correct\n");
+        } else{
+            System.out.println("Output incorrect\n");
+        }
+
+        //testing removemax and then the size
+        System.out.println("Max: 9");
+        if (test.removeMax() == 9){
+            System.out.println("removeMax output correct\n");
+        } else{
+            System.out.println("removeMax output incorrect\n");
+        }
+
+        System.out.println("size: " + test.size());
+        if (test.size() == 7){
+            System.out.println("Size output correct\n");
+        } else{
+            System.out.println("Size output incorrect\n");
+        }
+
+        //testing importing it as a preexisting arraylist
         ArrayList<Integer> input = new ArrayList<>(Arrays.asList(-2,3,9,-7,1,2,6,-3));
-        System.out.println(input);
         ArrayHeap<Integer> test2 = new ArrayHeap<>(input);
         System.out.println(test2);
+        if (test2.toString().compareTo("9\n1 6\n-3 -2 2 3\n-7") == 0){
+            System.out.println("Correct\n");
+        } else{
+            System.out.println("Incorrect\n");
+        }
+
+        //testing the sort method
         test2.sort();
         System.out.println(test2);
+        if (test2.toString().compareTo("-7\n-3 -2\n1 2 3 6\n9") == 0){
+            System.out.println("Sort output Correct\n");
+        } else{
+            System.out.println("Sort output Incorrect\n");
+        }
 
-        ArrayHeap<Integer> letterHeap = new ArrayHeap<Integer>();
-        letterHeap.insert(8);
-        letterHeap.insert(6);
-        letterHeap.insert(7);
-        letterHeap.insert(3);
-        letterHeap.insert(2);
-        letterHeap.insert(5); // inserting again, will still include
-        letterHeap.insert(4);
-        letterHeap.insert(1);
+        //testing size, isempty, and max
+        System.out.println("size: " + test2.size());
+        if (test2.size() == 8){
+            System.out.println("Size output Correct\n");
+        } else{
+            System.out.println("Size output Incorrect\n");
+        }
 
+        System.out.println("Is Empty: " + test2.isEmpty());
+        if (!test2.isEmpty()){
+            System.out.println("isEmpty output Correct\n");
+        } else{
+            System.out.println("isEmpty output Incorrect\n");
+        }
 
-        System.out.println("Now a heap: ");
-        System.out.println(letterHeap);
+        System.out.println("Max: " + test2.max());
+        if (test2.max() == -7){
+            System.out.println("Correct\n");
+        } else{
+            System.out.println("Incorrect\n");
+        }
 
-        letterHeap.sort();
-        System.out.println("\nNow sorted: ");
-        System.out.println(letterHeap);
-
+        //tests the arrayheap insert with characters
         ArrayHeap<Character> letter = new ArrayHeap<Character>();
         letter.insert('A');
         letter.insert('C');
@@ -108,11 +147,53 @@ public class Main {
         letter.insert('H');
         letter.insert('I');
 
-        System.out.println("Now a heap: ");
         System.out.println(letter);
+        if (letter.toString().compareTo("I\nH G\nE G C F\nA D B") == 0){
+            System.out.println("Output correct\n");
+        } else{
+            System.out.println("Output incorrect\n");
+        }
 
-        letter.sort();
-        System.out.println("\nNow sorted: ");
-        System.out.println(letter);
+        //testing removeMax multiple times
+        int len = letter.size();
+        Character[] answers = new Character[]{'I','H','G','G','F','E','D','C','B','A'};
+        for(int i = 0; i < len; i++){
+            Character check = letter.removeMax();
+            if (check.compareTo(answers[i]) == 0){
+                System.out.println(check + " is correct");
+            } else{
+                System.out.println(check + " is incorrect");
+            }
+        } System.out.println("\n");
+
+        //testing removeMax, size, isempty, and max when heap is empty
+        System.out.println("size: " + letter.size());
+        if (letter.size() == 0){
+            System.out.println("Size output Correct\n");
+        } else{
+            System.out.println("Size output Incorrect\n");
+        }
+
+        System.out.println("Is Empty: " + letter.isEmpty());
+        if (letter.isEmpty()){
+            System.out.println("isEmpty output Correct\n");
+        } else{
+            System.out.println("isEmpty output Incorrect\n");
+        }
+
+        System.out.println("Max: " + letter.max());
+        if (letter.max() == null){
+            System.out.println("Correct\n");
+        } else{
+            System.out.println("Incorrect\n");
+        }
+
+
+        System.out.println("Max: null");
+        if (letter.removeMax() == null){
+            System.out.println("Correct\n");
+        } else{
+            System.out.println("Incorrect\n");
+        }
     }
 }
