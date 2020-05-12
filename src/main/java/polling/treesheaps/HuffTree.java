@@ -97,22 +97,33 @@ public class HuffTree {
      * @return
      */
     public String decode(String message){
-        String codeFindInput = "";
-        StringBuilder output = new StringBuilder();
 
+        String codeFindInput = ""; //stores the codes for the findcodesdecode method
+        StringBuilder output = new StringBuilder(); //stores output
+
+        //creates a hashmap of codes and their symbol values using the tree
         findCodesDecode(this, codeFindInput);
 
-        int j = 0;
-        int i = 3;
+        int j = 0; //counter for each section of the message that is a code
+        int i = 3; //counter for each individual character in the message
+
+        //runs until the end of the message is reached
         while( i <= message.length()){
+
+            //creates a temporary string for comparison purposes
             String temp = message.substring(j,i);
+
+            //compares the temporary string against every code in the hashmap
             for(String string : codeDict.keySet()){
+
+                //if the temporary string matches a key, then the value of the key is appended to the output
                 if(temp.compareTo(string) == 0){
                     output.append(codeDict.get(string));
-                    j = i;
-                    i += 2;
+                    j = i; //j is advanced to i so that the last valid code is not accidentally overlapped
+                    i += 2; //since each code must be at least 3 digits, i can be advanced twice
                 }
             }
+            //i is always advanced forward
             i += 1;
         }
         return output.toString();
@@ -126,11 +137,18 @@ public class HuffTree {
      * stored hashmap.
      */
     private void findCodesDecode(HuffTree root, String code){
+        //checks if the current node is a leaf
         if (root.left == null && root.right == null) {
+
+            //adds the path code to the node and the corresponding symbol stored in the node to a hashmap
             codeDict.put(code,root.element);
             return;
         }
+
+        //recurses into the left child and adds a 0 to the path code
         findCodesDecode(root.left, code + "0");
+
+        //recurses into the right child and adds a 1 to the path code
         findCodesDecode(root.right, code + "1");
     }
 
