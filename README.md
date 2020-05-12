@@ -4,7 +4,16 @@ Name: Joseph Kawamura
 
 Number of Late Days Using for this lab:
 
-1
+Result of decoding mystery.txt:
+ ,;;:;,
+   ;;;;;
+  ,:;;:;    ,'=.
+  ;:;:;' .-" ,'.
+  ':;:;,/  ,--:=o
+   ';;:;  =./)-
+     '"=-  )-"
+         '--'"
+
 
 ### Lab Questionnaire
 
